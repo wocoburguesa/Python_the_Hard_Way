@@ -1,0 +1,28 @@
+class lexicon(object):
+
+    def __init__(self):
+        lexicon = {'direction': ['north', 'south', 'east', 'west', 'down', 'up',
+                                 'left', 'right', 'back'],
+                   'verb': ['go', 'stop', 'kill', 'eat'],
+                   'stop': ['the', 'in', 'of', 'from', 'at', 'it'],
+                   'noun': ['door', 'bear', 'princess', 'cabinet']}
+        print 'Initialized'
+
+    def scan(self, usr_input):
+        words = usr_input.split()
+        res = []
+        for w in words:
+            for k in lexicon.keys():
+                if w in lexicon[k]:
+                    res.append((k, w))
+                    break
+                else:
+                    try:
+                        res.append(('number', int(w)))
+                    except ValueError:
+                        res.append(('error', w))
+
+        return res
+
+a = lexicon()
+print a.scan(raw_input("> "))
